@@ -1,31 +1,23 @@
-import enum
 from random import *
 
-class SignStatus(enum.Enum):
-    fullSigns = 2
-    onlyMinus = 1
-    noSign = 0
-
 class Number:
-    def __init__(self,signStatus = SignStatus.fullSigns):
-        self.n = randint(1,20)
-        self.signStatus = signStatus
+    def __init__(self,fullSign = True):
+        self.n = randint(1,10)
+        self.fullSign = fullSign
         self.sign = choice(["+", "-", "+", "-", "+", "-", "+", "-", "+", "-", "+", "-"])
 
     def __str__(self):
-        if self.signStatus == SignStatus.fullSigns:
+        if self.fullSign:
             return f"{self.sign}{self.n}"
-        elif self.signStatus == SignStatus.onlyMinus:
+        else:
             if self.sign == "-":
                 return f"{self.sign}{self.n}"
             else:
                 return f"{self.n}"
-        else:
-            return f"{self.n}"
 
 class SqEq:
     def __init__(self):
-        self.a = Number(SignStatus.onlyMinus)
+        self.a = Number(False)
         self.b = Number()
         self.c = Number()
 
